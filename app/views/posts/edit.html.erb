@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Editar Publicación</h2>
+  <%= form_for @post, html: { multipart: true } do |f| %>
+    <div class="mb-3">
+      <%= f.label :image, class: "form-label" %>
+      <% if @post.image.attached? %>
+        <%= image_tag @post.image, class: 'img-fluid mb-2' %>
+      <% end %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description, rows: 3, class: "form-control" %>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit "Actualizar Publicación", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

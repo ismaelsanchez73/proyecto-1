@@ -1,0 +1,42 @@
+<h2 class="text-center">Nueva Publicación</h2>
+<hr>
+
+<%= form_for @post, html: { multipart: true, class: "needs-validation", novalidate: true } do |f| %>
+  <div class="mb-3">
+    <%= f.label :image, class: "form-label" %>
+    <%= f.file_field :image, class: "form-control" %>
+    <div class="invalid-feedback">
+      Por favor, selecciona una imagen.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, class: "form-label" %>
+    <%= f.text_area :description, rows: 3, class: "form-control", placeholder: "Escribe una descripción..." %>
+    <div class="invalid-feedback">
+      Por favor, escribe una descripción.
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit "Crear Publicación", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<script>
+  // Ejemplo de validación básica en el lado del cliente
+  (function () {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
